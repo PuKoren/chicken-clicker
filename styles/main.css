@@ -1,0 +1,60 @@
+html, body {height: 100%;width:100%;}
+html{
+	background-color: #313940;
+	color: #F0F1F2;
+}
+
+body { 
+    position: relative;
+}
+
+.container{
+	height:90%;
+	width:100%;
+}
+
+.header{
+	height:10%;
+	text-align: center;
+	font-size: 50px;
+	font-family: sans-serif;
+	display:box;
+	box-pack:center;
+	box-align:center;
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+}
+
+.container .leftShow{
+	width:50%;
+	height:100%;
+	float:left;
+	box-shadow: 1px 0em 0.001em #0D0D0D;
+}
+
+.container .rightShow{
+	width:50%;
+	height:100%;
+	float:right;
+	box-shadow: -1px 0em 0.001em #0D0D0D;
+}
+
+.startGame{
+	height:100%;
+}
+
+.startGame .startButton{
+	height:90%;
+	width: 100%;
+	margin:auto;
+	position: absolute;
+	text-align: center;
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+}
+.startGame .startButton .action{
+	cursor: pointer;
+	background-color: #5C6873;
+}
