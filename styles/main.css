@@ -1,6 +1,5 @@
 html, body {height: 100%;width:100%;}
 html{
-	background-color: #313940;
 	color: #F0F1F2;
 }
 
@@ -14,6 +13,7 @@ body {
 }
 
 .header{
+	background-color: #313940;
 	height:10%;
 	text-align: center;
 	font-size: 50px;
@@ -28,33 +28,39 @@ body {
 
 .container .leftShow{
 	width:50%;
-	height:100%;
-	float:left;
+	height:90%;
+	top:10%;
+	left:0;
 	box-shadow: 1px 0em 0.001em #0D0D0D;
+	background-color: #313940;
+	position: absolute;
 }
 
 .container .rightShow{
 	width:50%;
-	height:100%;
-	float:right;
-	box-shadow: -1px 0em 0.001em #0D0D0D;
-}
-
-.startGame{
-	height:100%;
-}
-
-.startGame .startButton{
 	height:90%;
-	width: 100%;
-	margin:auto;
+	top:10%;
+	right:0;
+	box-shadow: -1px 0em 0.001em #0D0D0D;
+	background-color: #313940;
 	position: absolute;
-	text-align: center;
-	display:-webkit-box;
-	-webkit-box-pack:center;
-	-webkit-box-align:center;
 }
-.startGame .startButton .action{
+
+.startButton{
+	margin:auto;
+	text-align: center;
+	top:50%;
+	left:50%;
+	margin-left: -35px;
+	position: absolute;
+}
+.startButton .action{
 	cursor: pointer;
 	background-color: #5C6873;
+}
+
+.container .game{
+	background-color: #5C6873;
+	height:100%;
+	width:100%;
 }
