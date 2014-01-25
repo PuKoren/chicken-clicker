@@ -14,22 +14,29 @@ function startGameAnimation(){
 	});
 };
 
+
+function fillItems(item, category){
+	var divItems = game.find(".upgrades .items");
+	var item = divItems.find(".item");
+	
+	$.each(items, function(id, val){
+		var targetDiv = divItems.find("."+id);
+		$.each(val, function(index, value){
+			var obj = item.clone();
+			obj.qtip({content: {text: value.cost + "$. " + value.description, title: value.name}});
+			obj.find("img").attr("src", "images/items/"+id+"/"+index+".png");
+			targetDiv.append(obj);
+		});
+	});
+	
+	item.hide();
+};
+
 function startGame(){
 	farmer.gold = 100;
 	game.find(".mainView").css("background-image", "url(images/farms/"+farmer.farm+".jpg)");
 
-	var divItems = game.find(".upgrades .items");
-	var item = divItems.find(".item");
-
-	var foodItems = divItems.find(".food");
-	$.each(items.food, function(index, value){
-		var obj = item.clone();
-		obj.qtip({content: {text: value.cost + "$. " + value.description, title: value.name}});
-		obj.find("img").attr("src", "images/items/food/"+index+".png");
-		foodItems.append(obj);
-	});
-
-	item.hide();
+	fillItems();
 
 	game.find("#gold").html(farmer.gold);
 };
