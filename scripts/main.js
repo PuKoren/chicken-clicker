@@ -2,9 +2,9 @@ var container = null;
 var game = null;
 var stats = null;
 
-function startGameAnimation(){
+function startGameAnimation(cb){
 	container.find(".leftShow").animate({left: "-50%"}, 1200, function(){
-
+		cb();
 	});
 	container.find(".rightShow").animate({width: "0%"}, 1200, function(){
 
@@ -67,7 +67,9 @@ $(document).ready(function(){
 	});
 
 	container.find(".startButton").click(function(){
-		startGameAnimation();
+		startGameAnimation(function(){
+
+		});
 	});
 
 	startGame();
