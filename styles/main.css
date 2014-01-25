@@ -76,26 +76,52 @@ body {
 .container .game{
 	height:100%;
 	width:100%;
+	text-align: center;
+}
+
+.container .game h1{
+	text-align: left;
+	padding-left: 10px;
+}
+
+.container .game h2{
+	padding-top: 20px;
 }
 
 .container .game .mainView{
 	width:100%;
 	height:90%;
 	position:absolute;
-	background-color: #7E8AA2;
 	z-index: -1;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 }
 
 .container .game .upgrades{
-	width:300px;
+	width:20%;
 	height:100%;
 	float:left;
 	background-color: #263248;
 	opacity: 0.7;
 }
 
+.container .game .upgrades .items{
+	padding-top: 10px;
+}
+
+.container .game .upgrades .items .item{
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.container .game .upgrades .items .item img{
+	width: 50px;
+	height: 50px;
+}
+
 .container .game .stats{
-	width:200px;
+	width:20%;
 	height:100%;
 	float:right;
 	opacity: 0.7;
