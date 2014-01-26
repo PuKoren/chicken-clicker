@@ -53,7 +53,6 @@ function changeSalePrice(newPrice){
 	farmer.gross = farmer.saleprice - farmer.prodcost;
 	stats.find("#saleprice").html(farmer.saleprice);
 	stats.find("#gross").html(farmer.gross.toFixed(2) * farmer.chickenout);
-
 };
 
 function createModal(){
@@ -95,6 +94,7 @@ function createModal(){
 
 function endTurn(){
 	createModal();
+	stats.find("#avgsaleprice").html(farmer.avgsaleprice);
 	turn++;
 };
 
