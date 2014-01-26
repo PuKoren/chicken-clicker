@@ -19,7 +19,7 @@
 	max-width: 280px;
 	min-width: 50px;
 	
-	font-size: 10.5px;
+	font-size: 13px;
 	line-height: 12px;
 
 	direction: ltr;
@@ -30,7 +30,7 @@
 
 	.qtip-content{
 		position: relative;
-		padding: 5px 9px;
+		padding: 10px;
 		overflow: hidden;
 
 		text-align: left;
@@ -38,13 +38,22 @@
 	}
 
 	.qtip-titlebar{
+		margin-top: 7px;
 		position: relative;
-		padding: 5px 35px 5px 10px;
+		padding: 2px 0px;
 		overflow: hidden;
-
-		border-width: 0 0 1px;
 		font-weight: bold;
+		font-size: 16px;
+		box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
 	}
+
+.qtip-title{
+	padding: 5px;
+	border-top: dashed 1px #aaa;
+	border-bottom: dashed 1px #aaa;
+	font-weight: bold;
+	font-family: ComputerModern;
+}
 
 	.qtip-titlebar + .qtip-content{ border-top-width: 0 !important; }
 
@@ -136,7 +145,7 @@
 }
 
 	.qtip-light .qtip-titlebar{
-		background-color: #f1f1f1;
+		background-color: #dddddd;
 	}
 
 
