@@ -9,13 +9,7 @@ html, body {height: 100%;width:100%;}
 html{
 	color: #ffffff;
 	background-color: #313940;
-	font-family: arial, sans-serif;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	font-family: cambria, georgia, "times new roman";
 }
 
 body { 
@@ -283,7 +277,7 @@ body {
 }
 
 .hidden{
-	display:none;
+	display:none !important;
 }
 
 .disabled{
@@ -293,15 +287,5 @@ body {
 
 .enabled{
 	opacity: 1;
-	transition:1s;
-}
-
-.positive{
-	color: #C0F532;
-	transition:1s;
-}
-
-.negative{
-	color:#FF5B63;
 	transition:1s;
 }
