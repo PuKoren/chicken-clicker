@@ -39,7 +39,7 @@ function addCommas(nStr){
 
 function changeGold(amount){
 	farmer.gold += amount;
-	stats.find("#gold").html(addCommas(farmer.gold));
+	stats.find("#gold").html(addCommas(farmer.gold.toFixed(2)));
 };
 
 function changeKarma(amount){
@@ -55,7 +55,16 @@ function changeKarma(amount){
 };
 
 function changeGross(){
-	stats.find("#gross").html(addCommas((farmer.saleprice * farmer.chickenout).toFixed(2)));
+	var gross = stats.find("#gross");
+	var amount = ((farmer.saleprice - farmer.prodcost) * farmer.chickenout).toFixed(2);
+	gross.html(addCommas(amount));
+	if(amount < 0){
+		gross.removeClass("positive").addClass("negative");
+	}else if(amount > 0){
+		gross.removeClass("negative").addClass("positive");
+	}else{
+		gross.removeClass("negative").removeClass("positive");
+	}
 };
 
 function changeProductionCost(amount){
@@ -181,13 +190,33 @@ function createModal(){
 	});
 };
 
+var monthSales = 0;
+var monthRevenues = 0;
+var chickenLoss = 0;
+
+function computeSales(){
+	var chickenout = farmer.chickenout * (farmer.avgsaleprice/farmer.saleprice);
+	if(chickenout < farmer.chickenout){
+		chickenout -= farmer.chickenout * 0.1;
+		chickenLoss += farmer.chickenout - chickenout;
+	}else{
+		chickenout = farmer.chickenout;
+	}
+	var amount = farmer.saleprice*chickenout;
+	amount -=  farmer.prodcost*chickenout;
+	changeGold(amount);
+};
+
 function endTurn(){
 	createModal();
 	stats.find("#avgsaleprice").html(farmer.avgsaleprice);
 	spent = false;
 	refreshSkills();
+	computeSales();
 	turn++;
 };
+
+
 var init = false;
 $(document).ready(function(){
 	container = $(".container");
