@@ -25,9 +25,21 @@ function refreshSkills(){
 	});
 };
 
+function addCommas(nStr){
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+};
+
 function changeGold(amount){
 	farmer.gold += amount;
-	stats.find("#gold").html(farmer.gold);
+	stats.find("#gold").html(addCommas(farmer.gold));
 };
 
 function changeKarma(amount){
@@ -35,13 +47,13 @@ function changeKarma(amount){
 };
 
 function changeGross(){
-	stats.find("#gross").html((farmer.saleprice * farmer.chickenout).toFixed(2));
+	stats.find("#gross").html(addCommas((farmer.saleprice * farmer.chickenout).toFixed(2)));
 };
 
 function changeProductionCost(amount){
 	farmer.prodcost += amount;
 	changeGross();
-	stats.find("#prodcost").html(farmer.prodcost);
+	stats.find("#prodcost").html(farmer.prodcost.toFixed(2));
 };
 
 function changeChickenOutput(amount){
@@ -53,7 +65,7 @@ function changeChickenOutput(amount){
 function changeSalePrice(newPrice){
 	farmer.saleprice = newPrice;
 	farmer.gross = farmer.saleprice - farmer.prodcost;
-	stats.find("#saleprice").html(farmer.saleprice);
+	stats.find("#saleprice").html(parseFloat(farmer.saleprice).toFixed(2));
 	changeGross();
 };
 
@@ -81,7 +93,7 @@ function fillItems(item, category){
 		$.each(val, function(index, value){
 			var obj = item.clone();
 			obj.qtip({content: {text: 
-				"Cost: " + value.cost + "$<br/>" + 
+				"Cost: " + addCommas(value.cost) + "$<br/>" + 
 				"Production cost effect: " + ((value.prodcost > 0)?"+"+value.prodcost:value.prodcost) + "$<br/>" + 
 				"Chicken output effect: " + ((value.chickenout > 0)?"+"+value.chickenout:value.chickenout) + "<br/><br/>" + 
 				value.description, title: value.name}});
