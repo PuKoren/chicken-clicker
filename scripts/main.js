@@ -62,9 +62,10 @@ function createModal(){
 			dialog.overlay.fadeIn('fast', function () {
 
 			});
-			dialog.container.slideDown('slow', function () {
-				dialog.data.fadeIn('slow');
+			dialog.container.fadeIn('slow', function () {
+				
 			});
+			dialog.data.fadeIn('slow');
 		},
 		onShow: function(dialog){
 			$("#title", dialog.data).html(actions[turn].title);
@@ -76,18 +77,19 @@ function createModal(){
 				$("#1", dialog.data).addClass("hidden");
 			}
 			$("a", dialog.data).click(function () {
-				
+				$.modal.close();
 				return false;
 			});
 		},
 		onClose: function(dialog){
-			dialog.overlay.fadeOut('fast', function () {
-				$.modal.close();
+			dialog.container.fadeOut('slow', function () {
 			});
-			dialog.container.slideUp('slow', function () {
-
+			dialog.overlay.fadeOut('slow', function () {
+				$.modal.close(); // must call this!
 			});
-		}
+		},
+		close: false,
+		escClose: false
 	});
 };
 

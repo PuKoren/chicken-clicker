@@ -5,9 +5,6 @@ var actions = {
 			0: {action: 0,
 				message: "Roger",
 				prodcost: 0,
-				chickenout: 0 },
-			1: {action: 0,
-				prodcost: 0,
 				chickenout: 0 }
 		}
 	}

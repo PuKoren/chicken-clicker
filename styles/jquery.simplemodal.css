@@ -30,3 +30,14 @@
 #simplemodal-container #content{
 	padding: 8px;
 }
+#simplemodal-container a{
+	float: right;
+	margin-right: 20px;
+	margin-top: 8px;
+	cursor: pointer;
+	background-color: #445878;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: 25px;
+	line-height: 25px;
+}
