@@ -141,7 +141,6 @@ body {
 	background-position-x: right;
 }
 
-
 .container .game .upgrades h2{
 	font-family: ComputerModern;
 	font-style: italic;
@@ -177,28 +176,83 @@ body {
 	width:20%;
 	height:100%;
 	float:right;
-	opacity: 0.9;
 	background-color: #000000;
+	background-image: url("../images/wood-planks.jpg");
+	background-position-x: -2px;
 }
 
-.container .game .stats h2{
-	text-align: right;
-	padding-right: 10px;
+.container .game .stats .items{
+	padding: 3px 0px;
+	text-align: left;
+	background-color: #354a6b;
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+}
+.container .game .stats .items>span{
+	display: block;
+	border-top: dashed 1px white;
+	border-bottom: dashed 1px white;
+	padding: 10px 0px;
+}
+
+.container .game .stats .items h2{
+	background-color: white;
+	color: #354a6b;
+	padding: 3px 0px;
+	font-family: ComputerModern;
+	font-size: 20px;
+	font-weight: bold;
+}
+.container .game .stats .items h2 .border{
+	display: block;
+	padding: 6px 20px;
+	border-top: dashed 1px #354a6b;
+	border-bottom: dashed 1px #354a6b;
+}
+
+.container .game .stats .items h2 > span > span,
+.container .game .stats h3 > span {
+	float: right;
+}
+
+.container .game .stats h3{
+	font-family: ComputerModern;
+	padding: 0px 20px;
+}
+.container .game .stats h3.price {
+	font-weight: bold;
+	font-size: 20px;
 }
 
 .container .game .stats .endturn{
-	cursor: pointer;
-	margin-top: 90%;
-	width:100%;
-	height:100px;
-	line-height: 100px;
-	background-color: #FF9800;
-	color:white;
+	text-align: center;
+	margin: 10px 0px;
 }
-
-.container .game .stats .priceslider{
-	margin: auto;
+.container .game .stats .endturn .circle {
+	display: inline-block;
+	padding: 5px;
+	cursor: pointer;
 	margin-top: 20px;
+	width: 110px;
+	height: 110px;
+	line-height: 30px;
+	background-color: #fff;
+	color: #354a6b;
+	border-radius: 250px;
+	text-align: center;
+	font-family: ComputerModern;
+	font-weight: bold;
+	font-size: 28px;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
+.container .game .stats .endturn .border {
+	padding: 20px;
+	padding-top: 25px;
+	border: dashed 2px #354a6b;
+	height: 62px;
+	border-radius: 250px;;
+}
+.container .game .stats .priceslider{
+	margin: 10px auto;
 	width:80%;
 }
 
