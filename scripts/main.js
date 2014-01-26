@@ -141,7 +141,7 @@ function createModal(){
 		return false;
 	}
 
-	$.modal("<div><h1 id='title'></h1><div id='content'></div><a id='0'></a><a id='1'></a></div>", {
+	$.modal("<div><h1><span id='title'></span></h1><div id='content'></div><div class='buttons'><div class='confirm'><a id='0'><span class='message'></span><span class='message2'></span></a></div><div class='cancel'><a id='1'><span class='message'></span><span class='message2'></a></div></div></div>", {
 		onOpen: function(dialog){
 			dialog.overlay.fadeIn('fast', function () {
 
@@ -154,11 +154,19 @@ function createModal(){
 		onShow: function(dialog){
 			$("#title", dialog.data).html(actions[turn].title);
 			$("#content", dialog.data).html(actions[turn].message);
-			$("#0", dialog.data).html(actions[turn].actions[0].message);
+			$("#0>.message", dialog.data).html(actions[turn].actions[0].message);
+			if(actions[turn].actions[0].message2 != undefined){
+				$("#0").addClass("composed");
+				$("#0>.message2", dialog.data).html(actions[turn].actions[0].message2);
+			}
 			if(actions[turn].actions[1] != undefined){
-				$("#1", dialog.data).html(actions[turn].actions[1].message);
+				$("#1>.message", dialog.data).html(actions[turn].actions[1].message);
+				if(actions[turn].actions[1].message2 != undefined){
+					$("#1").addClass("composed");
+					$("#1>.message2", dialog.data).html(actions[turn].actions[1].message2);
+				}
 			}else{
-				$("#1", dialog.data).addClass("hidden");
+				$(".cancel", dialog.data).addClass("hidden");
 			}
 			var tmpTurn = turn;
 			$("a", dialog.data).click(function () {

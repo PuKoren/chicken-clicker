@@ -9,7 +9,7 @@ html, body {height: 100%;width:100%;}
 html{
 	color: #ffffff;
 	background-color: #313940;
-	font-family: arial, sans-serif;
+	font-family: cambria, georgia, "times new roman";
 }
 
 body { 
@@ -277,7 +277,7 @@ body {
 }
 
 .hidden{
-	display:none;
+	display:none !important;
 }
 
 .disabled{

@@ -23,12 +23,14 @@ var actions = {
 		message: "According to Consumer Reports, 1.1 million or more Americans are sickened each year by undercooked, tainted chicken. A USDA study discovered E. coli (Biotype I) in 99% of supermarket chicken, the result of chicken butchering not being a sterile process.<br/>To help your consumers and avoid any issue, we can use irradiation after butchering. So this way the meat could be free of any virus for our consummers. But this has a cost, will you pay ?", 
 		actions:{
 			0: {action: 0,
-				message: "Yes (40.000$)",
+				message: "Yes",
+				message2: "40,000$",
 				prodcost: 0,
 				chickenout: 0,
 				gold: -40000 },
 			1: {action: 0,
-				message: "Nop (0$)",
+				message: "Nop",
+				message2: "0$",
 				prodcost: 0,
 				chickenout: 0,
 				gold: 0 }
