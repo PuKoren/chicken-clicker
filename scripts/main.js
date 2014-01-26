@@ -16,15 +16,18 @@ function startGameAnimation(cb){
 	});
 };
 
-function changeGold(amount){
-	farmer.gold += amount;
-	stats.find("#gold").html(farmer.gold);
+function refreshSkills(){
 	game.find(".item").each(function(index, value){
 		if($(value).attr("cost") < farmer.gold)
 			$(this).removeClass("disabled").addClass("enabled");
 		else
 			$(this).removeClass("enabled").addClass("disabled");
 	});
+};
+
+function changeGold(amount){
+	farmer.gold += amount;
+	stats.find("#gold").html(farmer.gold);
 };
 
 function changeKarma(amount){
@@ -128,11 +131,12 @@ function createModal(){
 			}else{
 				$("#1", dialog.data).addClass("hidden");
 			}
-
+			var tmpTurn = turn;
 			$("a", dialog.data).click(function () {
-				console.log(actions[turn-1].actions[$(this).attr("id")]);
-				changeGold(actions[turn-1].actions[$(this).attr("id")].gold);
-				changeProductionCost(actions[turn].actions[$(this).attr("id")].prodcost);
+				console.log(actions[tmpTurn].actions[$(this).attr("id")]);
+				changeGold(actions[tmpTurn].actions[$(this).attr("id")].gold);
+				changeProductionCost(actions[tmpTurn].actions[$(this).attr("id")].prodcost);
+				refreshSkills();
 				$.modal.close();
 				return false;
 			});
@@ -153,7 +157,7 @@ function endTurn(){
 	createModal();
 	stats.find("#avgsaleprice").html(farmer.avgsaleprice);
 	spent = false;
-	changeGold(0);
+	refreshSkills();
 	turn++;
 };
 var init = false;
