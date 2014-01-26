@@ -149,8 +149,8 @@ body {
 
 .container .game .upgrades h2{
 	font-family: ComputerModern;
-	font-style: italic;
 	font-size: 16px;
+	padding-top: 5px;
 }
 
 .container .game .upgrades .items{
@@ -164,6 +164,10 @@ body {
 	border-top: dashed 1px white;
 	border-bottom: dashed 1px white;
 	padding: 10px 20px;
+}
+
+.container .game .upgrades .items>span>div {
+	padding-bottom: 5px;
 }
 
 .container .game .upgrades .items .item{
