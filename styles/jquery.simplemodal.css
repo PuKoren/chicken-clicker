@@ -15,7 +15,14 @@
 #simplemodal-overlay {background-color:#000;}
 
 /* Container */
-#simplemodal-container {margin-top:-200px;width:600px; color:#bbb; background-color:#1C1D21; border:4px solid #31353D;}
+#simplemodal-container {
+	margin-top:-200px;
+	width:600px; 
+	color: #333333; 
+	background-color:#fdfdfd; 
+	border-top:6px solid #FF9800;
+	font-family: "Times New Roman";
+}
 #simplemodal-container .simplemodal-data {}
 #simplemodal-container code {background:#141414; border-left:3px solid #65B43D; color:#bbb; display:block; font-size:12px; margin-bottom:12px;}
 #simplemodal-container a {color:#ddd;}
@@ -25,11 +32,22 @@
 	padding-left: 8px;
 	height:30px;
 	line-height: 30px;
-	background-color: #445878;
+	padding: 7px 0px;
+	font-family: ComputerModern;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	background-color: #FF9800;
+	color: white;
+	/*box-shadow: 0px 0px 2px rgba(0,0,0,0.5);*/
+	/*text-shadow: 0px 0px 5px rgba(0,0,0,0.5);*/
+	border-top: dashed 2px white;
+	border-bottom: dashed 2px white;
 }
 
 #simplemodal-container #content{
-	padding: 8px;
+	border-top:6px solid #FF9800;
+	padding: 30px;
 }
 
 #simplemodal-container a{
