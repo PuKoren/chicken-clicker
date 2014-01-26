@@ -7,5 +7,14 @@ var actions = {
 				prodcost: 0,
 				chickenout: 0 }
 		}
+	},
+	1: {title: "Setting the sale price", 
+		message: "If your sale price is too high relative to the average sale price, you will sell a lot less.<br/>People are attentive to price more than bread conditions.<br/>In 2013, 74% of the chicken meat comes from intensive production. That means that 74% of the meat buyers don't care.<br/><br/>If you want to sell, drop your sale price. But be careful about your production cost, you may want to lower it by using upgrades on the left.", 
+		actions:{
+			0: {action: 0,
+				message: "Roger",
+				prodcost: 0,
+				chickenout: 0 }
+		}
 	}
 };

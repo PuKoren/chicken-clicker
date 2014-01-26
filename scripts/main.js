@@ -21,6 +21,33 @@ function spendGold(amount){
 	stats.find("#gold").html(farmer.gold);
 };
 
+function changeKarma(amount){
+	farmer.karma += amount;
+};
+
+function changeGross(){
+	stats.find("#gross").html((farmer.saleprice * farmer.chickenout).toFixed(2));
+};
+
+function changeProductionCost(amount){
+	farmer.prodcost += amount;
+	changeGross();
+	stats.find("#prodcost").html(farmer.prodcost);
+};
+
+function changeChickenOutput(amount){
+	farmer.chickenout += amount;
+	stats.find("#chickenout").html(farmer.chickenout);
+	changeGross();
+};
+
+function changeSalePrice(newPrice){
+	farmer.saleprice = newPrice;
+	farmer.gross = farmer.saleprice - farmer.prodcost;
+	stats.find("#saleprice").html(farmer.saleprice);
+	changeGross();
+};
+
 var spent = false;
 function buyItem(elem, item){
 	if(farmer.gold < 0)
@@ -29,6 +56,9 @@ function buyItem(elem, item){
 		return;
 
 	spendGold(item.cost);
+	changeKarma(item.karma);
+	changeProductionCost(item.prodcost);
+	changeChickenOutput(item.chickenout);
 	game.find(".item").not(elem).removeClass("enabled").addClass("disabled");
 	spent = true;
 };
@@ -66,13 +96,6 @@ function startGame(){
 
 	stats.find("#gold").html(farmer.gold);
 	stats.find("#chickenout").html(farmer.chickenout);
-};
-
-function changeSalePrice(newPrice){
-	farmer.saleprice = newPrice;
-	farmer.gross = farmer.saleprice - farmer.prodcost;
-	stats.find("#saleprice").html(farmer.saleprice);
-	stats.find("#gross").html(farmer.gross.toFixed(2) * farmer.chickenout);
 };
 
 function createModal(){
