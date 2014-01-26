@@ -16,9 +16,15 @@ function startGameAnimation(cb){
 	});
 };
 
-function spendGold(amount){
-	farmer.gold -= amount;
+function changeGold(amount){
+	farmer.gold += amount;
 	stats.find("#gold").html(farmer.gold);
+	game.find(".item").each(function(index, value){
+		if($(value).attr("cost") < farmer.gold)
+			$(this).removeClass("disabled").addClass("enabled");
+		else
+			$(this).removeClass("enabled").addClass("disabled");
+	});
 };
 
 function changeKarma(amount){
@@ -55,7 +61,7 @@ function buyItem(elem, item){
 	if(spent)
 		return;
 
-	spendGold(item.cost);
+	changeGold(-item.cost);
 	changeKarma(item.karma);
 	changeProductionCost(item.prodcost);
 	changeChickenOutput(item.chickenout);
@@ -122,7 +128,11 @@ function createModal(){
 			}else{
 				$("#1", dialog.data).addClass("hidden");
 			}
+
 			$("a", dialog.data).click(function () {
+				console.log(actions[turn-1].actions[$(this).attr("id")]);
+				changeGold(actions[turn-1].actions[$(this).attr("id")].gold);
+				changeProductionCost(actions[turn].actions[$(this).attr("id")].prodcost);
 				$.modal.close();
 				return false;
 			});
@@ -143,12 +153,7 @@ function endTurn(){
 	createModal();
 	stats.find("#avgsaleprice").html(farmer.avgsaleprice);
 	spent = false;
-	game.find(".item").each(function(index, value){
-		if($(value).attr("cost") < farmer.gold)
-			$(this).removeClass("disabled").addClass("enabled");
-		else
-			$(this).removeClass("enabled").addClass("disabled");
-	});
+	changeGold(0);
 	turn++;
 };
 var init = false;

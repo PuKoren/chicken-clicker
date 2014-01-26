@@ -1,5 +1,5 @@
 var farmer = {
-	gold: 100000,
+	gold: 0,
 	production: 0,
 	karma: 100,
 	prodcost: 0,
