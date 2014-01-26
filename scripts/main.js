@@ -11,7 +11,7 @@ function startGameAnimation(cb){
 
 	});
 
-	container.find(".startButton").animate({opacity: 0}, 800, function(){
+	container.find(".startButton").fadeOut(800, function(){
 
 	});
 };
@@ -97,7 +97,7 @@ function endTurn(){
 	stats.find("#avgsaleprice").html(farmer.avgsaleprice);
 	turn++;
 };
-
+var init = false;
 $(document).ready(function(){
 	container = $(".container");
 	game = container.find(".game");
@@ -110,9 +110,12 @@ $(document).ready(function(){
 	});
 
 	container.find(".startButton").click(function(){
+		if(init)
+			return;
 		startGameAnimation(function(){
 			endTurn();
 		});
+		init = true;
 	});
 
 	startGame();
