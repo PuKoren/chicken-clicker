@@ -189,3 +189,7 @@ body {
 	margin-top: 20px;
 	width:80%;
 }
+
+.hidden{
+	display:none;
+}

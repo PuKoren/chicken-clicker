@@ -1,6 +1,7 @@
 var container = null;
 var game = null;
 var stats = null;
+var turn = 0;
 
 function startGameAnimation(cb){
 	container.find(".leftShow").animate({left: "-50%"}, 1200, function(){
@@ -55,6 +56,48 @@ function changeSalePrice(newPrice){
 
 };
 
+function createModal(){
+	$.modal("<div><h1 id='title'></h1><div id='content'></div><a id='0'></a><a id='1'></a></div>", {
+		onOpen: function(dialog){
+			dialog.overlay.fadeIn('fast', function () {
+
+			});
+			dialog.container.fadeIn('slow', function () {
+				
+			});
+			dialog.data.fadeIn('slow');
+		},
+		onShow: function(dialog){
+			$("#title", dialog.data).html(actions[turn].title);
+			$("#content", dialog.data).html(actions[turn].message);
+			$("#0", dialog.data).html(actions[turn].actions[0].message);
+			if(actions[turn].actions[1] != undefined){
+				$("#1", dialog.data).html(actions[turn].actions[1].message);
+			}else{
+				$("#1", dialog.data).addClass("hidden");
+			}
+			$("a", dialog.data).click(function () {
+				$.modal.close();
+				return false;
+			});
+		},
+		onClose: function(dialog){
+			dialog.container.fadeOut('slow', function () {
+			});
+			dialog.overlay.fadeOut('slow', function () {
+				$.modal.close(); // must call this!
+			});
+		},
+		close: false,
+		escClose: false
+	});
+};
+
+function endTurn(){
+	createModal();
+	turn++;
+};
+
 $(document).ready(function(){
 	container = $(".container");
 	game = container.find(".game");
@@ -68,7 +111,7 @@ $(document).ready(function(){
 
 	container.find(".startButton").click(function(){
 		startGameAnimation(function(){
-
+			endTurn();
 		});
 	});
 
