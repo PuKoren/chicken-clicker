@@ -134,6 +134,7 @@ body {
 
 .container .game .upgrades{
 	width:20%;
+	min-width: 255px;
 	height:100%;
 	float:left;
 	background-color: rgba(0,0,0,0.5);
@@ -174,6 +175,7 @@ body {
 
 .container .game .stats{
 	width:20%;
+	min-width: 255px;
 	height:100%;
 	float:right;
 	background-color: #000000;
