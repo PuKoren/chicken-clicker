@@ -16,6 +16,22 @@ function startGameAnimation(cb){
 	});
 };
 
+function spendGold(amount){
+	farmer.gold -= amount;
+	stats.find("#gold").html(farmer.gold);
+};
+
+var spent = false;
+function buyItem(elem, item){
+	if(farmer.gold < 0)
+		return;
+	if(spent)
+		return;
+
+	spendGold(item.cost);
+	game.find(".item").not(elem).removeClass("enabled").addClass("disabled");
+	spent = true;
+};
 
 function fillItems(item, category){
 	var divItems = game.find(".upgrades .items");
@@ -31,6 +47,10 @@ function fillItems(item, category){
 				"Chicken output effect: " + ((value.chickenout > 0)?"+"+value.chickenout:value.chickenout) + "<br/><br/>" + 
 				value.description, title: value.name}});
 			obj.find("img").attr("src", "images/items/"+id+"/"+index+".png");
+			obj.click(function(){
+				buyItem($(this), value);
+			});
+			obj.attr("cost", value.cost);
 			targetDiv.append(obj);
 		});
 	});
@@ -56,6 +76,10 @@ function changeSalePrice(newPrice){
 };
 
 function createModal(){
+	if(actions[turn] == undefined){
+		return false;
+	}
+
 	$.modal("<div><h1 id='title'></h1><div id='content'></div><a id='0'></a><a id='1'></a></div>", {
 		onOpen: function(dialog){
 			dialog.overlay.fadeIn('fast', function () {
@@ -95,6 +119,13 @@ function createModal(){
 function endTurn(){
 	createModal();
 	stats.find("#avgsaleprice").html(farmer.avgsaleprice);
+	spent = false;
+	game.find(".item").each(function(index, value){
+		if($(value).attr("cost") < farmer.gold)
+			$(this).removeClass("disabled").addClass("enabled");
+		else
+			$(this).removeClass("enabled").addClass("disabled");
+	});
 	turn++;
 };
 var init = false;
@@ -114,6 +145,9 @@ $(document).ready(function(){
 			return;
 		startGameAnimation(function(){
 			endTurn();
+			$(".endturn").click(function(){
+				endTurn();
+			});
 		});
 		init = true;
 	});
