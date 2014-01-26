@@ -9,6 +9,7 @@ html, body {height: 100%;width:100%;}
 html{
 	color: #F0F1F2;
 	background-color: #313940;
+	font-family: arial, sans-serif;
 }
 
 body { 
@@ -16,16 +17,21 @@ body {
 }
 
 .container{
-	height:90%;
+	height:100%;
 	width:100%;
 }
 
 .header{
+	position: fixed;
+	top: 0px;
+	z-index: 1;
 	background-color: #000000;
-	height:10%;
+	background-color: rgba(0,0,0,0.6);
 	text-align: center;
-	font-size: 50px;
-	font-family: sans-serif;
+	font-size: 30px;
+	font-family: ComputerModern;
+	font-weight: bold;
+	color: #cccccc;
 	display:box;
 	box-pack:center;
 	box-align:center;
@@ -36,6 +42,7 @@ body {
 	-moz-box-pack:center;
 	-moz-box-align:center;
 	width:100%;
+	padding: 10px 0px;
 }
 
 .container .leftShow{
@@ -43,8 +50,8 @@ body {
 	background-repeat:no-repeat;
 	background-position:right top;
 	width:50%;
-	height:90%;
-	top:10%;
+	height:100%;
+	top:0;
 	left:0;
 	box-shadow: 1px 0em 0.001em #0D0D0D;
 	position: absolute;
@@ -54,8 +61,8 @@ body {
 	background-image: url(../images/industrial-r.jpg);
 	background-repeat:no-repeat;
 	width:50%;
-	height:90%;
-	top:10%;
+	height:100%;
+	top:0;
 	right:0;
 	box-shadow: -1px 0em 0.001em #0D0D0D;
 	position: absolute;
@@ -63,7 +70,7 @@ body {
 
 .startButton{
 	margin:auto;
-	top:45%;
+	top:40%;
 	left:50%;
 	margin-left: -100px;
 	position: absolute;
@@ -101,11 +108,12 @@ body {
 .container .game h1{
 	text-align: left;
 	padding-left: 10px;
+	margin-top: 80px;
 }
 
 .container .game .mainView{
 	width:100%;
-	height:90%;
+	height:100%;
 	position:absolute;
 	z-index: -1;
 	background-size: 100% 100%;
