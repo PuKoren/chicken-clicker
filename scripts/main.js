@@ -44,6 +44,14 @@ function changeGold(amount){
 
 function changeKarma(amount){
 	farmer.karma += amount;
+	if(farmer.karma >= 0){
+		farmer.farm = 0;
+	}else if(farmer.karma > -100){
+		farmer.farm = 1;
+	}else{
+		farmer.farm = 2;
+	}
+	game.find(".mainView").css("background-image", "url(images/farms/"+farmer.farm+".jpg)");
 };
 
 function changeGross(){
@@ -145,7 +153,6 @@ function createModal(){
 			}
 			var tmpTurn = turn;
 			$("a", dialog.data).click(function () {
-				console.log(actions[tmpTurn].actions[$(this).attr("id")]);
 				changeGold(actions[tmpTurn].actions[$(this).attr("id")].gold);
 				changeProductionCost(actions[tmpTurn].actions[$(this).attr("id")].prodcost);
 				refreshSkills();
