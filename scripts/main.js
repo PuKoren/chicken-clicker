@@ -44,6 +44,14 @@ function changeGold(amount){
 
 function changeKarma(amount){
 	farmer.karma += amount;
+	if(farmer.karma >= 0){
+		farmer.farm = 0;
+	}else if(farmer.karma > -100){
+		farmer.farm = 1;
+	}else{
+		farmer.farm = 2;
+	}
+	game.find(".mainView").css("background-image", "url(images/farms/"+farmer.farm+".jpg)");
 };
 
 function changeGross(){
@@ -92,11 +100,20 @@ function fillItems(item, category){
 		var targetDiv = divItems.find("."+id);
 		$.each(val, function(index, value){
 			var obj = item.clone();
-			obj.qtip({content: {text: 
+			obj.qtip({content: { text: 
 				"Cost: " + addCommas(value.cost) + "$<br/>" + 
 				"Production cost effect: " + ((value.prodcost > 0)?"+"+value.prodcost:value.prodcost) + "$<br/>" + 
 				"Chicken output effect: " + ((value.chickenout > 0)?"+"+value.chickenout:value.chickenout) + "<br/><br/>" + 
-				value.description, title: value.name}});
+				value.description, title: value.name},
+				style: {
+					classes: 'qtip-light'
+				},
+				position: {
+			        my: 'center left',  // Position my top left...
+			        at: 'center right', // at the bottom right of...
+			        
+			    }
+			});
 			obj.find("img").attr("src", "images/items/"+id+"/"+index+".png");
 			obj.click(function(){
 				buyItem($(this), value);
@@ -145,7 +162,6 @@ function createModal(){
 			}
 			var tmpTurn = turn;
 			$("a", dialog.data).click(function () {
-				console.log(actions[tmpTurn].actions[$(this).attr("id")]);
 				changeGold(actions[tmpTurn].actions[$(this).attr("id")].gold);
 				changeProductionCost(actions[tmpTurn].actions[$(this).attr("id")].prodcost);
 				refreshSkills();
