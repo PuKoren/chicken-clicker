@@ -1,3 +1,10 @@
+
+@font-face
+{
+font-family: ComputerModern;
+src: url(cmunui.ttf);
+}
+
 html, body {height: 100%;width:100%;}
 html{
 	color: #F0F1F2;
@@ -64,13 +71,25 @@ body {
 	width:200px;
 	height:200px;
 	border-radius:250px;
-	font-size:20px;
+	font-size:23px;
 	background-color: #FF9800;
 	color:#fff;
 	text-align:center;
+	padding: 10px;
 }
 .startButton .action{
-	margin-top: 65px;
+	font-family: ComputerModern;
+	font-style: italic;
+	border-radius:250px;
+	width:194px;
+	height:159px;
+	border: dashed 3px white;
+	padding-top: 35px;
+}
+.emphasis {
+	font-size: 50px;
+	font-style: normal;
+	line-height: 58px;
 }
 
 .container .game{
