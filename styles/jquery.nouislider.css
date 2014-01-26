@@ -27,7 +27,6 @@
 }
 .noUi-handle {
 	position: relative;
-	z-index: 1;
 }
 .noUi-stacking .noUi-handle {
 /* This class is applied to the lower origin when
