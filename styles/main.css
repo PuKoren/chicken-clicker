@@ -7,7 +7,7 @@ src: url(cmunui.ttf);
 
 html, body {height: 100%;width:100%;}
 html{
-	color: #F0F1F2;
+	color: #ffffff;
 	background-color: #313940;
 	font-family: arial, sans-serif;
 }
@@ -110,7 +110,7 @@ body {
 	text-align: center;
 	background-color: #FF9800;
 	box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
-	text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	/*text-shadow: 0px 0px 5px rgba(0,0,0,0.5);*/
 }
 .container .game h1 span{
 	display: block;
