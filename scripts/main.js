@@ -100,11 +100,20 @@ function fillItems(item, category){
 		var targetDiv = divItems.find("."+id);
 		$.each(val, function(index, value){
 			var obj = item.clone();
-			obj.qtip({content: {text: 
+			obj.qtip({content: { text: 
 				"Cost: " + addCommas(value.cost) + "$<br/>" + 
 				"Production cost effect: " + ((value.prodcost > 0)?"+"+value.prodcost:value.prodcost) + "$<br/>" + 
 				"Chicken output effect: " + ((value.chickenout > 0)?"+"+value.chickenout:value.chickenout) + "<br/><br/>" + 
-				value.description, title: value.name}});
+				value.description, title: value.name},
+				style: {
+					classes: 'qtip-light'
+				},
+				position: {
+			        my: 'center left',  // Position my top left...
+			        at: 'center right', // at the bottom right of...
+			        
+			    }
+			});
 			obj.find("img").attr("src", "images/items/"+id+"/"+index+".png");
 			obj.click(function(){
 				buyItem($(this), value);
