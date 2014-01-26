@@ -11,11 +11,57 @@ function startGameAnimation(cb){
 
 	});
 
-	container.find(".startButton").animate({opacity: 0}, 800, function(){
+	container.find(".startButton").fadeOut(800, function(){
 
 	});
 };
 
+function spendGold(amount){
+	farmer.gold -= amount;
+	stats.find("#gold").html(farmer.gold);
+};
+
+function changeKarma(amount){
+	farmer.karma += amount;
+};
+
+function changeGross(){
+	stats.find("#gross").html((farmer.saleprice * farmer.chickenout).toFixed(2));
+};
+
+function changeProductionCost(amount){
+	farmer.prodcost += amount;
+	changeGross();
+	stats.find("#prodcost").html(farmer.prodcost);
+};
+
+function changeChickenOutput(amount){
+	farmer.chickenout += amount;
+	stats.find("#chickenout").html(farmer.chickenout);
+	changeGross();
+};
+
+function changeSalePrice(newPrice){
+	farmer.saleprice = newPrice;
+	farmer.gross = farmer.saleprice - farmer.prodcost;
+	stats.find("#saleprice").html(farmer.saleprice);
+	changeGross();
+};
+
+var spent = false;
+function buyItem(elem, item){
+	if(farmer.gold < 0)
+		return;
+	if(spent)
+		return;
+
+	spendGold(item.cost);
+	changeKarma(item.karma);
+	changeProductionCost(item.prodcost);
+	changeChickenOutput(item.chickenout);
+	game.find(".item").not(elem).removeClass("enabled").addClass("disabled");
+	spent = true;
+};
 
 function fillItems(item, category){
 	var divItems = game.find(".upgrades .items");
@@ -31,6 +77,10 @@ function fillItems(item, category){
 				"Chicken output effect: " + ((value.chickenout > 0)?"+"+value.chickenout:value.chickenout) + "<br/><br/>" + 
 				value.description, title: value.name}});
 			obj.find("img").attr("src", "images/items/"+id+"/"+index+".png");
+			obj.click(function(){
+				buyItem($(this), value);
+			});
+			obj.attr("cost", value.cost);
 			targetDiv.append(obj);
 		});
 	});
@@ -48,14 +98,11 @@ function startGame(){
 	stats.find("#chickenout").html(farmer.chickenout);
 };
 
-function changeSalePrice(newPrice){
-	farmer.saleprice = newPrice;
-	farmer.gross = farmer.saleprice - farmer.prodcost;
-	stats.find("#saleprice").html(farmer.saleprice);
-	stats.find("#gross").html(farmer.gross.toFixed(2) * farmer.chickenout);
-};
-
 function createModal(){
+	if(actions[turn] == undefined){
+		return false;
+	}
+
 	$.modal("<div><h1 id='title'></h1><div id='content'></div><a id='0'></a><a id='1'></a></div>", {
 		onOpen: function(dialog){
 			dialog.overlay.fadeIn('fast', function () {
@@ -95,9 +142,16 @@ function createModal(){
 function endTurn(){
 	createModal();
 	stats.find("#avgsaleprice").html(farmer.avgsaleprice);
+	spent = false;
+	game.find(".item").each(function(index, value){
+		if($(value).attr("cost") < farmer.gold)
+			$(this).removeClass("disabled").addClass("enabled");
+		else
+			$(this).removeClass("enabled").addClass("disabled");
+	});
 	turn++;
 };
-
+var init = false;
 $(document).ready(function(){
 	container = $(".container");
 	game = container.find(".game");
@@ -110,9 +164,15 @@ $(document).ready(function(){
 	});
 
 	container.find(".startButton").click(function(){
+		if(init)
+			return;
 		startGameAnimation(function(){
 			endTurn();
+			$(".endturn").click(function(){
+				endTurn();
+			});
 		});
+		init = true;
 	});
 
 	startGame();
